@@ -1,8 +1,4 @@
 import './styles.scss';
-import { initCanvas } from './js/init';
+import init from './services/init';
 
-const GAME_ROOT = document.getElementById('rocket-fox');
-const canvas = document.createElement('canvas');
-GAME_ROOT.after(canvas);
-
-initCanvas(canvas);
+init();
