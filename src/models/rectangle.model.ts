@@ -17,4 +17,9 @@ export class RectangleModel extends WorldObjectModel {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.coordinates.x, this.coordinates.y, this.size.w, this.size.h);
     }
+
+    public updateObject(){
+        this.coordinates.x++;
+    }
+
 }

@@ -1,4 +1,5 @@
 export default {
+    engineMaxTickRate: 1000 / 120,
     resolution: {
         width: 1280,
         height: 720
