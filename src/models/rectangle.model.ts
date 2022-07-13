@@ -1,5 +1,6 @@
-import {Coordinates, RectangularSize, Color} from './objects.interfaces';
+import {Coordinates, RectangularSize, Color, Boundaries} from './objects.interfaces';
 import {WorldObjectModel} from "./world.object.model";
+import engineController from "../controllers/engine.controller";
 
 export class RectangleModel extends WorldObjectModel {
     constructor(
@@ -13,13 +14,15 @@ export class RectangleModel extends WorldObjectModel {
         this.color = color;
     }
 
+    public updateObject(boundaries: Boundaries){
+        if(this.isStatic) return;
+        engineController.applyGravity(this, boundaries);
+        this.coordinates.y += this.deltaY;
+    }
+
     public drawObject(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.coordinates.x, this.coordinates.y, this.size.w, this.size.h);
-    }
-
-    public updateObject(){
-        this.coordinates.x++;
     }
 
 }

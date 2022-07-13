@@ -1,4 +1,7 @@
 import engineCfg from "../cfg/engine.cfg";
+import {Boundaries} from "../models/objects.interfaces";
+import {WorldObjectModel} from "../models/world.object.model";
+import {RectangleModel} from "../models/rectangle.model";
 
 class Engine {
     public unixStartTime: number;
@@ -16,12 +19,22 @@ class Engine {
         setInterval(() => {
             this.unixRunTime = Date.now() - this.unixStartTime;
 
-            if(Date.now() - this.unixTickStartTime > 1000){
+            if(Date.now() - this.unixTickStartTime > engineCfg.engineTickRate){
                 console.log('tick');
                 engineTick();
                 this.unixTickStartTime = Date.now();
             }
-        }, engineCfg.engineMaxTickRate)
+        }, 0)
+    }
+
+    applyGravity(object: RectangleModel, boundaries: Boundaries){
+        if(object.coordinates.y >= (boundaries.bottom - object.size.h)){
+            object.deltaY *= -1;
+            console.log(boundaries.bottom )
+            return;
+        };
+        if(object.deltaY >= object.terminalVelocity) return;
+        object.applyForce(0, 1);
     }
 
 }

@@ -26,9 +26,9 @@ class Renderer {
     }
 
     public drawLoop(objects: any[]): void {
-        if(this.lifeTimeFrameCounter > 1200){
-            return
-        }
+        // if(this.lifeTimeFrameCounter > 1200){
+        //     return
+        // }
         this.lifeTimeFrameCounter++;
         this.drawFrame(objects);
         requestAnimationFrame( () => {
