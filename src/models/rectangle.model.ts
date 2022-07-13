@@ -17,7 +17,7 @@ export class RectangleModel extends WorldObjectModel {
     public updateObject(boundaries: Boundaries){
         if(this.isStatic) return;
         engineController.applyGravity(this, boundaries);
-        this.coordinates.y += this.deltaY;
+        this.coordinates.y = this.coordinates.y + this.size.h + this.deltaY > boundaries.bottom ? boundaries.bottom - this.size.h : this.coordinates.y += this.deltaY;
     }
 
     public drawObject(ctx: CanvasRenderingContext2D): void {

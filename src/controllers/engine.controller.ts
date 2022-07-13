@@ -29,7 +29,7 @@ class Engine {
 
     applyGravity(object: RectangleModel, boundaries: Boundaries){
         if(object.coordinates.y >= (boundaries.bottom - object.size.h)){
-            object.deltaY *= -1;
+            object.deltaY *= -0.9;
             console.log(boundaries.bottom )
             return;
         };
